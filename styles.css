@@ -9,3 +9,20 @@
 .book {
     border: 1px solid black;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+form > div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+form > button {
+    align-self: flex-start;
+}
