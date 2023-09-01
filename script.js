@@ -45,3 +45,12 @@ for(let i = 0; i < myLibrary.length; i++) {
 }
 
 // New book adding
+
+function btnAddToLibrary() {
+    console.log('adding to library');
+    let form = document.querySelector('.form-container');
+    form.classList.toggle('hidden');
+}
+
+btn = document.querySelector('.library > button');
+btn.addEventListener('click', () => btnAddToLibrary());
