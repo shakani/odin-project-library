@@ -23,6 +23,23 @@ addToLibrary(theHobbit);
 addToLibrary(goodOmens);
 addToLibrary(recursion);
 
+// Displaying library 
+
+let library = document.querySelector('.library');
+
 for(let i = 0; i < myLibrary.length; i++) {
-    console.log(myLibrary[i].info());
+    let book = myLibrary[i];
+    let bookAttributeArray = book.info().split(', ')
+
+    let card = document.createElement('div');
+    card.classList.add('book');
+
+    for(let j = 0; j < bookAttributeArray.length; j++) {
+        let attribute = document.createElement('div');
+        attribute.classList.add('attribute');
+        attribute.textContent = bookAttributeArray[j];
+        card.appendChild(attribute);
+    }
+
+    library.appendChild(card);
 }
