@@ -43,3 +43,5 @@ for(let i = 0; i < myLibrary.length; i++) {
 
     library.appendChild(card);
 }
+
+// New book adding
