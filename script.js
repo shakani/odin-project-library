@@ -19,7 +19,8 @@ function addToLibrary(book) {
 
     let card = document.createElement('div');
     card.classList.add('book');
-    card.id = `book-${myLibrary.length - 1}`;
+    const index = myLibrary.length - 1;
+    card.id = `book-${index}`;
 
     for(let j = 0; j < bookAttributeArray.length; j++) {
         let attribute = document.createElement('div');
@@ -29,8 +30,11 @@ function addToLibrary(book) {
     }
 
     let btn = document.createElement('button');
-    btn.classList.add(`delete-btn-${myLibrary.length - 1}`); 
+    btn.classList.add(`delete-btn`); 
     btn.textContent = "Delete";
+
+    btn.addEventListener('click', () => removeFromLibrary(index));
+
     card.appendChild(btn);
 
     library.appendChild(card);
@@ -96,9 +100,19 @@ function btnPushToLibrary() {
     toggleForm();
 }
 
+function btnDeleteBook(e) {
+    let card = e['target'].parentElement;
+    let index = card.id.slice(-1);
+    removeFromLibrary(index);
+}
+
 btn = document.querySelector('.library > button');
 btn.addEventListener('click', () => toggleForm());
 
 submitBtn = document.querySelector('.new-book');
 submitBtn.addEventListener('click', () => btnPushToLibrary());
 
+// deleteBtns = document.querySelectorAll('.delete-btn');
+// deleteBtns.forEach(function (item, idx) {
+//     item.addEventListener('click', (e) => btnDeleteBook(e));
+// });
