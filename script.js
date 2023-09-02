@@ -11,24 +11,10 @@ function Book(title, author, pages, read) {
     }
 }
 
-function addToLibrary(bookToAdd) {
-    myLibrary.push(bookToAdd);
-}
+function addToLibrary(book) {
+    myLibrary.push(book);
 
-theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
-goodOmens = new Book("Good Omens", "Neil Gaiman", 400, false);
-recursion = new Book("Recursion", "That One Guy", 500, true);
-
-addToLibrary(theHobbit);
-addToLibrary(goodOmens);
-addToLibrary(recursion);
-
-// Displaying library 
-
-let library = document.querySelector('.library');
-
-for(let i = 0; i < myLibrary.length; i++) {
-    let book = myLibrary[i];
+    let library = document.querySelector('.library');
     let bookAttributeArray = book.info().split(', ')
 
     let card = document.createElement('div');
@@ -43,6 +29,35 @@ for(let i = 0; i < myLibrary.length; i++) {
 
     library.appendChild(card);
 }
+
+theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
+goodOmens = new Book("Good Omens", "Neil Gaiman", 400, false);
+recursion = new Book("Recursion", "That One Guy", 500, true);
+
+addToLibrary(theHobbit);
+addToLibrary(goodOmens);
+addToLibrary(recursion);
+
+// Displaying library 
+
+let library = document.querySelector('.library');
+
+// for(let i = 0; i < myLibrary.length; i++) {
+//     let book = myLibrary[i];
+//     let bookAttributeArray = book.info().split(', ')
+
+//     let card = document.createElement('div');
+//     card.classList.add('book');
+
+//     for(let j = 0; j < bookAttributeArray.length; j++) {
+//         let attribute = document.createElement('div');
+//         attribute.classList.add('attribute');
+//         attribute.textContent = bookAttributeArray[j];
+//         card.appendChild(attribute);
+//     }
+
+//     library.appendChild(card);
+// }
 
 // New book adding
 
@@ -65,27 +80,28 @@ function btnPushToLibrary() {
     newBook.read = readInput.checked;
 
     addToLibrary(newBook);
+    // clear inputs
     titleInput.value = '';
     authorInput.value = '';
     pagesInput.value = '';
     readInput.checked = false;
 
-    // displaying to library 
-    let bookAttributeArray = newBook.info().split(', ')
+    // // displaying to library 
+    // let bookAttributeArray = newBook.info().split(', ')
 
-    let card = document.createElement('div');
-    card.classList.add('book');
+    // let card = document.createElement('div');
+    // card.classList.add('book');
 
-    for(let j = 0; j < bookAttributeArray.length; j++) {
-        let attribute = document.createElement('div');
-        attribute.classList.add('attribute');
-        attribute.textContent = bookAttributeArray[j];
-        card.appendChild(attribute);
-    }
+    // for(let j = 0; j < bookAttributeArray.length; j++) {
+    //     let attribute = document.createElement('div');
+    //     attribute.classList.add('attribute');
+    //     attribute.textContent = bookAttributeArray[j];
+    //     card.appendChild(attribute);
+    // }
 
-    library.appendChild(card);
+    // library.appendChild(card);
 
-    // re-hide form
+    // // re-hide form
 
     btnAddToLibrary();
 }
