@@ -19,6 +19,7 @@ function addToLibrary(book) {
 
     let card = document.createElement('div');
     card.classList.add('book');
+    card.id = `book-${myLibrary.length - 1}`;
 
     for(let j = 0; j < bookAttributeArray.length; j++) {
         let attribute = document.createElement('div');
@@ -27,8 +28,13 @@ function addToLibrary(book) {
         card.appendChild(attribute);
     }
 
+    let btn = document.createElement('button');
+    btn.textContent = "Delete";
+    card.appendChild(btn);
+
     library.appendChild(card);
 }
+
 
 theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
 goodOmens = new Book("Good Omens", "Neil Gaiman", 400, false);
