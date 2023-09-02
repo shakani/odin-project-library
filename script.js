@@ -38,30 +38,9 @@ addToLibrary(theHobbit);
 addToLibrary(goodOmens);
 addToLibrary(recursion);
 
-// Displaying library 
-
-let library = document.querySelector('.library');
-
-// for(let i = 0; i < myLibrary.length; i++) {
-//     let book = myLibrary[i];
-//     let bookAttributeArray = book.info().split(', ')
-
-//     let card = document.createElement('div');
-//     card.classList.add('book');
-
-//     for(let j = 0; j < bookAttributeArray.length; j++) {
-//         let attribute = document.createElement('div');
-//         attribute.classList.add('attribute');
-//         attribute.textContent = bookAttributeArray[j];
-//         card.appendChild(attribute);
-//     }
-
-//     library.appendChild(card);
-// }
-
 // New book adding
 
-function btnAddToLibrary() {
+function toggleForm() { // toggles form
     let form = document.querySelector('.form-container');
     form.classList.toggle('hidden');
 }
@@ -86,28 +65,11 @@ function btnPushToLibrary() {
     pagesInput.value = '';
     readInput.checked = false;
 
-    // // displaying to library 
-    // let bookAttributeArray = newBook.info().split(', ')
-
-    // let card = document.createElement('div');
-    // card.classList.add('book');
-
-    // for(let j = 0; j < bookAttributeArray.length; j++) {
-    //     let attribute = document.createElement('div');
-    //     attribute.classList.add('attribute');
-    //     attribute.textContent = bookAttributeArray[j];
-    //     card.appendChild(attribute);
-    // }
-
-    // library.appendChild(card);
-
-    // // re-hide form
-
-    btnAddToLibrary();
+    toggleForm();
 }
 
 btn = document.querySelector('.library > button');
-btn.addEventListener('click', () => btnAddToLibrary());
+btn.addEventListener('click', () => toggleForm());
 
 submitBtn = document.querySelector('.new-book');
 submitBtn.addEventListener('click', () => btnPushToLibrary());
