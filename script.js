@@ -29,7 +29,7 @@ function addToLibrary(book) {
     }
 
     let btn = document.createElement('button');
-    btn.classList.add(`delete-btn-${myLibrary.length - 1}`); 
+    btn.classList.add('delete-btn'); 
     btn.textContent = "Delete";
     card.appendChild(btn);
 
