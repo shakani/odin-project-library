@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -37,8 +37,24 @@ function addToLibrary(book) {
 }
 
 function removeFromLibrary(bookID) {
-    let libSize = myLibrary.length; 
+    console.log(`removing book-${bookID} from library`);
+    // delete everything library is displaying
+    let library = document.querySelector('.library');
+    for(let i = 0; i < myLibrary.length; i++) {
+        let book = document.querySelector(`#book-${i}`);
+        library.removeChild(book);
+    }
 
+    // now delete desired book from the database
+    let booksAbove = myLibrary.slice(0, bookID);
+    let booksBelow = myLibrary.slice(bookID+1);
+    let remainingBooks = Array.prototype.concat(booksAbove, booksBelow); // deleted desired book from library 
+    myLibrary = []; // delete all books
+
+    // now display entire library again
+    for(let j = 0; j < remainingBooks.length; j++) {
+        addToLibrary(remainingBooks[j]);
+    }
 }
 
 
