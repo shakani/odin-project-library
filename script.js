@@ -25,6 +25,7 @@ function addToLibrary(book) {
     for(let j = 0; j < bookAttributeArray.length; j++) {
         let attribute = document.createElement('div');
         attribute.classList.add('attribute');
+        attribute.classList.add( Object.keys(book)[j] )
         attribute.textContent = bookAttributeArray[j];
         card.appendChild(attribute);
     }
@@ -33,15 +34,21 @@ function addToLibrary(book) {
     btn.classList.add(`delete-btn`); 
     btn.textContent = "Delete";
 
+    let btnRead = document.createElement('button');
+    btnRead.classList.add('read-btn');
+    btnRead.textContent = "Read/Unread";
+
     btn.addEventListener('click', () => removeFromLibrary(index));
+    btnRead.addEventListener('click', () => readToggle(index));
 
     card.appendChild(btn);
+    card.appendChild(btnRead);
 
     library.appendChild(card);
 }
 
 function removeFromLibrary(bookID) {
-    console.log(`removing book-${bookID} from library`);
+    // console.log(`removing book-${bookID} from library`);
     // delete everything library is displaying
     let library = document.querySelector('.library');
     for(let i = 0; i < myLibrary.length; i++) {
@@ -61,10 +68,22 @@ function removeFromLibrary(bookID) {
     }
 }
 
+function readToggle(bookID) {
+    // console.log(`toggling book-${bookID} read status`);
+    // change in database
+    myLibrary[bookID].read = !myLibrary[bookID].read;
+
+    // change on DOM
+    let card = document.querySelector(`#book-${bookID}`);
+    let el = card.childNodes[2];
+    let newText = myLibrary[bookID].info().split(', ').slice(-1)[0];
+    el.textContent = newText;
+}
+
 
 theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
 goodOmens = new Book("Good Omens", "Neil Gaiman", 400, false);
-recursion = new Book("Recursion", "That One Guy", 500, true);
+recursion = new Book("Recursion", "Blake Crouch", 336, true);
 
 addToLibrary(theHobbit);
 addToLibrary(goodOmens);
@@ -112,7 +131,3 @@ btn.addEventListener('click', () => toggleForm());
 submitBtn = document.querySelector('.new-book');
 submitBtn.addEventListener('click', () => btnPushToLibrary());
 
-// deleteBtns = document.querySelectorAll('.delete-btn');
-// deleteBtns.forEach(function (item, idx) {
-//     item.addEventListener('click', (e) => btnDeleteBook(e));
-// });
