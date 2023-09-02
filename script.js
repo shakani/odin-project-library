@@ -47,10 +47,51 @@ for(let i = 0; i < myLibrary.length; i++) {
 // New book adding
 
 function btnAddToLibrary() {
-    console.log('adding to library');
     let form = document.querySelector('.form-container');
     form.classList.toggle('hidden');
 }
 
+function btnPushToLibrary() {
+    let newBook = new Book();
+
+    let titleInput = document.querySelector('input[for="title"]');
+    let authorInput = document.querySelector('input[for="author"]');
+    let pagesInput = document.querySelector('input[for="pages"]');
+    let readInput = document.querySelector('input[for="read"]');
+
+    newBook.title = titleInput.value;
+    newBook.author = authorInput.value;
+    newBook.pages = pagesInput.value;
+    newBook.read = readInput.checked;
+
+    addToLibrary(newBook);
+    titleInput.value = '';
+    authorInput.value = '';
+    pagesInput.value = '';
+    readInput.checked = false;
+
+    // displaying to library 
+    let bookAttributeArray = newBook.info().split(', ')
+
+    let card = document.createElement('div');
+    card.classList.add('book');
+
+    for(let j = 0; j < bookAttributeArray.length; j++) {
+        let attribute = document.createElement('div');
+        attribute.classList.add('attribute');
+        attribute.textContent = bookAttributeArray[j];
+        card.appendChild(attribute);
+    }
+
+    library.appendChild(card);
+
+    // re-hide form
+
+    btnAddToLibrary();
+}
+
 btn = document.querySelector('.library > button');
 btn.addEventListener('click', () => btnAddToLibrary());
+
+submitBtn = document.querySelector('.new-book');
+submitBtn.addEventListener('click', () => btnPushToLibrary());
