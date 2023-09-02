@@ -29,7 +29,7 @@ function addToLibrary(book) {
     }
 
     let btn = document.createElement('button');
-    btn.classList.add('delete-btn'); 
+    btn.classList.add(`delete-btn-${myLibrary.length - 1}`); 
     btn.textContent = "Delete";
     card.appendChild(btn);
 
@@ -101,3 +101,4 @@ btn.addEventListener('click', () => toggleForm());
 
 submitBtn = document.querySelector('.new-book');
 submitBtn.addEventListener('click', () => btnPushToLibrary());
+
